@@ -14,6 +14,7 @@
 		63D3CBC81B5F425C00C5C423 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D3CBC71B5F425C00C5C423 /* Images.xcassets */; };
 		63D3CBCB1B5F425C00C5C423 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63D3CBC91B5F425C00C5C423 /* LaunchScreen.xib */; };
 		63D3CBD71B5F425D00C5C423 /* YaCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D3CBD61B5F425D00C5C423 /* YaCardTests.m */; };
+		63D3CBE21B5F4C3900C5C423 /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D3CBE11B5F4C3900C5C423 /* PlayingCardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		63D3CBD01B5F425C00C5C423 /* YaCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YaCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D3CBD51B5F425D00C5C423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63D3CBD61B5F425D00C5C423 /* YaCardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YaCardTests.m; sourceTree = "<group>"; };
+		63D3CBE01B5F4C3900C5C423 /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
+		63D3CBE11B5F4C3900C5C423 /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				63D3CBC11B5F425C00C5C423 /* ViewController.h */,
 				63D3CBC21B5F425C00C5C423 /* ViewController.m */,
 				63D3CBC41B5F425C00C5C423 /* Main.storyboard */,
+				63D3CBE01B5F4C3900C5C423 /* PlayingCardView.h */,
+				63D3CBE11B5F4C3900C5C423 /* PlayingCardView.m */,
 				63D3CBC71B5F425C00C5C423 /* Images.xcassets */,
 				63D3CBC91B5F425C00C5C423 /* LaunchScreen.xib */,
 				63D3CBBA1B5F425C00C5C423 /* Supporting Files */,
@@ -220,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D3CBC31B5F425C00C5C423 /* ViewController.m in Sources */,
+				63D3CBE21B5F4C3900C5C423 /* PlayingCardView.m in Sources */,
 				63D3CBC01B5F425C00C5C423 /* AppDelegate.m in Sources */,
 				63D3CBBD1B5F425C00C5C423 /* main.m in Sources */,
 			);
