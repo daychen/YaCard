@@ -15,4 +15,6 @@
 @property(strong, nonatomic) NSString *suit;
 
 @property(nonatomic)BOOL faceup;
+
+-(void)pinch:(UIPinchGestureRecognizer *)gesture;
 @end

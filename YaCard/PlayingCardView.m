@@ -8,6 +8,10 @@
 
 #import "PlayingCardView.h"
 
+@interface PlayingCardView()
+@property(nonatomic)CGFloat cardImageScaleFactor;
+
+@end
 @implementation PlayingCardView
 
 /*
@@ -18,6 +22,29 @@
 }
 */
 
+
+
+@synthesize cardImageScaleFactor=_cardImageScaleFactor;
+
+
+#pragma mark -properties
+
+-(void)setCardImageScaleFactor:(CGFloat)cardImageScaleFactor{
+    _cardImageScaleFactor=cardImageScaleFactor;
+    [self setNeedsDisplay];
+
+}
+
+#define DEFAULT_CARD_SCALE_FACTOR 0.90
+
+-(CGFloat)cardImageScaleFactor{
+    if (!_cardImageScaleFactor) {
+        _cardImageScaleFactor=DEFAULT_CARD_SCALE_FACTOR;
+    }
+    
+    return _cardImageScaleFactor;
+
+}
 -(void)setSuit:(NSString *)suit{
     _suit=suit;
     [self setNeedsDisplay];
@@ -35,9 +62,10 @@
 }
 
 
+#pragma mark -drawCard
 #define CORNER_FONT_STANDARD_HEIGHT 180.0
 #define CORNER_RADIUS 12.0
-#pragma mark properties
+
 
 -(CGFloat)cornerScaleFactor {
     return self.bounds.size.height/CORNER_FONT_STANDARD_HEIGHT;
@@ -50,6 +78,7 @@
 }
 
 
+#
 - (void)drawRect:(CGRect)rect {
     
     
@@ -59,7 +88,44 @@
     UIRectFill(self.bounds);
     
     
-    [self drawCorner];
+    if (self.faceup) {
+        
+    
+        UIImage *cardImage=[UIImage imageNamed:[NSString stringWithFormat:@"%@%@",[self rankString],self.suit]];
+        if (cardImage) {
+            
+            CGRect imageRect=CGRectInset(self.bounds, self.bounds.size.width*(1-self.cardImageScaleFactor), self.bounds.size.height*(1-self.cardImageScaleFactor));
+            [cardImage drawInRect:imageRect];
+        }else{
+            
+            [self drawpips];
+            
+        }
+        
+        [self drawCorner];
+        
+    }
+    else{
+    
+        [[UIImage imageNamed:@"cardback"]drawInRect:self.bounds];
+    }
+}
+
+
+-(void)drawpips{
+
+    
+
+}
+
+
+-(void)pinch:(UIPinchGestureRecognizer *)gesture{
+
+    if ((gesture.state==UIGestureRecognizerStateEnded )|| (gesture.state==UIGestureRecognizerStateChanged)) {
+        
+        self.cardImageScaleFactor*=gesture.scale;
+        gesture.scale=1.0;
+    }
 }
 
 -(NSString *)rankString{
@@ -74,7 +140,7 @@
     cornerStyle.alignment=NSTextAlignmentCenter;
     
     UIFont *cornerFont=[UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    cornerFont=[cornerFont fontWithSize:cornerFont.pointSize*[self cornerRadius]];
+    cornerFont=[cornerFont fontWithSize:cornerFont.pointSize*[self cornerScaleFactor]];
     
     NSAttributedString *cornerText=[[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@\n%@",[self rankString],self.suit] attributes:@{NSFontAttributeName:cornerFont,NSParagraphStyleAttributeName:cornerStyle}];
 
@@ -85,6 +151,15 @@
     textbounds.size=cornerText.size;
     
     [cornerText drawInRect:textbounds];
+    
+    
+    CGContextRef context=UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, self.bounds.size.width, self.bounds.size.height);
+    CGContextRotateCTM(context, M_PI);
+    
+      [cornerText drawInRect:textbounds];
+    
+    
 }
 
 #pragma mark -Initializer
