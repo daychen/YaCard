@@ -114,7 +114,28 @@
 
 -(void)drawpips{
 
+    int pipsCount=self.rank;
     
+    
+    CGRect pipsRect=CGRectInset(self.bounds, self.bounds.size.width*(1-self.cardImageScaleFactor), self.bounds.size.height*(1-self.cardImageScaleFactor));
+    
+    NSMutableParagraphStyle *cardSuitStyle=[[NSMutableParagraphStyle alloc]init];
+    cardSuitStyle.alignment=NSTextAlignmentCenter;
+    
+    
+    NSAttributedString *cardSingleSuit=[[NSAttributedString alloc]initWithString:self.suit attributes:@{NSParagraphStyleAttributeName:cardSuitStyle}];
+    
+    switch (pipsCount) {
+        case 1:
+            [cardSingleSuit drawInRect:pipsRect];
+
+            
+            break;
+        
+        default:
+            break;
+    }
+                                 
 
 }
 
